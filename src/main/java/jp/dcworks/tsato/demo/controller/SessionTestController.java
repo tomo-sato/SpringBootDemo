@@ -14,21 +14,21 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import jp.dcworks.tsato.demo.dto.RequestForm;
 
 /**
- * リダイレクト検証の為のコントローラ.
+ * リダイレクト+セッション利用の検証用コントローラ.
  *
  * @author tomo-sato
  */
 @Controller
-@RequestMapping("/redirect")
-public class RedirectTestController {
-	private static final Logger logger = LogManager.getLogger(RedirectTestController.class.getName());
+@RequestMapping("/session")
+public class SessionTestController {
+	private static final Logger logger = LogManager.getLogger(SessionTestController.class.getName());
 
 	@GetMapping("form")
 	public String form(
 			@ModelAttribute RequestForm requestForm) {
-		logger.info("redirect/form");
+		logger.info("session/form");
 
-		return "redirect/form";
+		return "session/form";
 	}
 
 
@@ -37,7 +37,7 @@ public class RedirectTestController {
 			@Validated @ModelAttribute RequestForm requestForm
 			, BindingResult result
 			, RedirectAttributes redirectAttributes) {
-		logger.info("redirect/regist");
+		logger.info("session/regist");
 
 		// バリデーション
 		if (result.hasErrors()) {
@@ -47,8 +47,8 @@ public class RedirectTestController {
 			redirectAttributes.addFlashAttribute("errors", result);
 			redirectAttributes.addFlashAttribute("requestForm", requestForm);
 
-			// 「redirect/form」にリダイレクト
-			return "redirect:/redirect/form";
+			// 「session/form」にリダイレクト
+			return "redirect:/session/form";
 		}
 
 		redirectAttributes.addFlashAttribute("isSuccess", "1");
