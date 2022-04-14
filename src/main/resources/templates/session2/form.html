@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>リダイレク+セッショントテスト</title>
+</head>
+<body>
+	<h1>リダイレク+セッショントテスト</h1>
+	<ul th:if="${errors != null}">
+		<li th:each="error : ${errors.getAllErrors()}">
+			<span th:text="${error.getDefaultMessage()}">Error message</span>
+		</li>
+	</ul>
+	<form th:action="@{/session2/regist}" th:object="${requestForm}" method="post">
+		半角数値（※必須）：<input type="text" name="num" th:errorclass="is-invalid" th:field="*{num}" />
+		<button type="submit">登録</button>
+	</form>
+</body>
+</html>
