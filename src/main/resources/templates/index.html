@@ -9,5 +9,9 @@
 
 	<p><a href="/redirect/form">リダイレクトテスト</a></p>
 	<p><a href="/session/form">リダイレク+セッショントテスト</a></p>
+	<form th:action="@{/session/regist}" method="post">
+		<button type="submit">リダイレク+セッショントテスト（※いきなりPOST）</button>
+	</form>
+
 </body>
 </html>
