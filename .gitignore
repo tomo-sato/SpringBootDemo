@@ -35,3 +35,8 @@ out/
 
 ### VS Code ###
 .vscode/
+
+
+### other ###
+spring_boot_demo_docker/data/**
+!spring_boot_demo_docker/data/empty
