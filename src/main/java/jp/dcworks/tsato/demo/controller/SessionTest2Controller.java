@@ -38,8 +38,6 @@ public class SessionTest2Controller {
 			, Model model) {
 		logger.info("session2/form");
 
-		// セッションデータクリア
-		session.invalidate();
 		// セッション処理中ステータスセット
 		session.setAttribute("isSession", true);
 
@@ -76,7 +74,7 @@ public class SessionTest2Controller {
 		}
 
 		// セッションクリア
-		session.invalidate();
+		session.removeAttribute("isSession");
 
 		// ※登録処理等、実装する。
 
