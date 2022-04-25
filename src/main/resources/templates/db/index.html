@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>dbテスト</title>
+</head>
+<body>
+	<h1>dbテスト</h1>
+
+	<p>185件の項目</p>
+	<table border="1">
+		<thead>
+			<tr>
+				<th><a href="#">ID▼</a></th>
+				<th><a href="#">名前▼</a></th>
+				<th><a href="#">年齢▼</a></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="user:${users}">
+				<th th:text="${user.id}">1</th>
+				<th th:text="${user.name}">太郎</th>
+				<th th:text="${user.age}">30</th>
+			</tr>
+		</tbody>
+	</table>
+
+	<nav>
+		<ul>
+			<li th:class="(${i}==${page.number}) ? 'page-item active' : 'page-item'" th:each="i : ${#numbers.sequence(0, page.totalPages-1)}">
+				<a th:href="@{${url}(page=${i})}" th:text='${i+1}'></a>
+			</li>
+		</ul>
+	</nav>
+
+</body>
+</html>
