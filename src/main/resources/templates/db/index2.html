@@ -11,9 +11,15 @@
 	<table border="1">
 		<thead>
 			<tr>
-				<th><a th:href="@{${url}(sortBy=id)}">ID▼</a></th>
-				<th><a th:href="@{${url}(sortBy=name)}">名前▼</a></th>
-				<th><a th:href="@{${url}(sortBy=age)}">年齢▼</a></th>
+				<th th:with="isActiveOrder=(id==${sort}), nextOrder=(${isActiveOrder} ? !${order} : true), orderIcon=(${isActiveOrder} ? (${order} ? '▲' : '▼') : '')">
+					<a th:href="@{${url}(sort=id, order=${nextOrder})}" th:text="|ID${orderIcon}:${isActiveOrder}:${nextOrder}|"></a>
+				</th>
+				<th th:with="isActiveOrder=(name==${sort}), nextOrder=(${isActiveOrder} ? !${order} : true), orderIcon=(${isActiveOrder} ? (${order} ? '▲' : '▼') : '')" >
+					<a th:href="@{${url}(sort=name, order=${nextOrder})}" th:text="|名前${orderIcon}:${isActiveOrder}:${nextOrder}|"></a>
+				</th>
+				<th th:with="isActiveOrder=(age==${sort}), nextOrder=(${isActiveOrder} ? !${order} : true), orderIcon=(${isActiveOrder} ? (${order} ? '▲' : '▼') : '')" >
+					<a th:href="@{${url}(sort=age, order=${nextOrder})}" th:text="|年齢${orderIcon}:${isActiveOrder}:${nextOrder}|"></a>
+				</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -28,7 +34,7 @@
 	<nav>
 		<ul>
 			<li th:class="(${i}==${page.number}) ? 'page-item active' : 'page-item'" th:each="i : ${#numbers.sequence(0, page.totalPages-1)}">
-				<a th:href="@{${url}(pageNo=${i}, sortBy=${sortBy})}" th:text='${i+1}'></a>
+				<a th:href="@{${url}(page=${i}, sort=${sort})}" th:text='${i+1}'></a>
 			</li>
 		</ul>
 	</nav>
