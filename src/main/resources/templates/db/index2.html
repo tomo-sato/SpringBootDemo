@@ -33,11 +33,45 @@
 
 	<nav>
 		<ul>
-			<li th:class="(${i}==${page.number}) ? 'page-item active' : 'page-item'" th:each="i : ${#numbers.sequence(0, page.totalPages-1)}">
+			<li th:class="(${i}==${page.number}) ? 'page-item active' : 'page-item'" th:each="i : ${#numbers.sequence(0, page.totalPages-1)}" style="display:inline">
 				<a th:href="@{${url}(page=${i}, sort=${sort})}" th:text='${i+1}'></a>
 			</li>
 		</ul>
 	</nav>
 
+	<div th:fragment='paginationbar'>
+		<ul class='pagination pagination-centered'>
+			<li th:class="${pager.firstPage}?'disabled':''" style="display:inline">
+				<span th:if='${pager.firstPage}'>←先頭</span>
+				<a th:if='${not pager.firstPage}' th:href='@{${pager.url}(page=0,size=${pager.size})}'>←先頭</a>
+			</li>
+
+			<li th:class="${pager.hasPreviousPage}? '' : 'disabled'" style="display:inline">
+				<span th:if='${not pager.hasPreviousPage}'>«</span>
+				<a th:if='${pager.hasPreviousPage}' th:href='@{${pager.url}(page=${pager.currentNumber-2},size=${pager.size})}'>«</a>
+			</li>
+
+			<li th:each='item : ${pager.items}' th:class="${item.current}? 'active' : ''" style="display:inline">
+				<span th:if='${item.current}' th:text='${item.number}'>1</span>
+				<a th:if='${not item.current}' th:href='@{${pager.url}(page=${item.number-1},size=${pager.size})}'>
+				<span th:text='${item.number}'>1</span>
+				</a>
+			</li>
+
+			<li th:if="${pager.isListContinue}" style="display:inline">
+				<span>…</span>
+			</li>
+
+			<li th:class="${pager.hasNextPage}? '' : 'disabled'" style="display:inline">
+				<span th:if='${not pager.hasNextPage}'>»</span>
+				<a th:if='${pager.hasNextPage}' th:href='@{${pager.url}(page=${pager.currentNumber},size=${pager.size})}'>»</a>
+			</li>
+
+			<li th:class="${pager.lastPage}? 'disabled' : ''" style="display:inline">
+				<span th:if='${pager.lastPage}'>末尾➝</span>
+				<a th:if='${not pager.lastPage}' th:href='@{${pager.url}(page=${pager.totalPages - 1},size=${pager.size})}'>末尾➝</a>
+			</li>
+		</ul>
+	</div>
 </body>
 </html>

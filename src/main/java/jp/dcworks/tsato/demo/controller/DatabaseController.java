@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import jp.dcworks.tsato.demo.PageWrapper;
 import jp.dcworks.tsato.demo.entity.User;
 import jp.dcworks.tsato.demo.service.UserService;
 import lombok.extern.log4j.Log4j2;
@@ -80,8 +81,12 @@ public class DatabaseController {
 		String sortColumn = isColumnExist(User.class, sort) ? sort : "id";
 
 		Page<User> userPage = userService.findAll(ipage, isize, sortColumn, isOrderAsc);
+		PageWrapper<User> pager = new PageWrapper<User>(userPage, "test2");
+
 		model.addAttribute("users", userPage);
 		model.addAttribute("page", userPage);
+		model.addAttribute("pager", pager);
+
 		model.addAttribute("sort", sortColumn);
 		model.addAttribute("order", order);
 		model.addAttribute("words", userPage.getContent());
