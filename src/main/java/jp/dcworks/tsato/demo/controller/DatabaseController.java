@@ -78,7 +78,9 @@ public class DatabaseController {
 		boolean isOrderAsc = BooleanUtils.toBoolean(order);
 
 		// TODO カラムが存在するかどうかチェック
-		String sortColumn = isColumnExist(User.class, sort) ? sort : "id";
+		// TODO カラム名じゃなく、プロパティのようだ。。
+//		String sortColumn = isColumnExist(User.class, sort) ? sort : "id";
+		String sortColumn = sort;
 
 		Page<User> userPage = userService.findAll(ipage, isize, sortColumn, isOrderAsc);
 		PageWrapper<User> pager = new PageWrapper<User>(userPage, "test2");
