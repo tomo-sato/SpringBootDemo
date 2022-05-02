@@ -6,6 +6,17 @@
 </head>
 <body>
 	<p th:if="${isSuccess != null}">成功！！</p>
+	<p th:if="jp.dcworks.tsato.demo.TestUtil.isTest">テスト1です。</p>
+	<p th:if="${@testUtil.isTest()}">テスト2です。</p>
+	<p th:if="${@testUtil.isTest('hoge')}">テスト3です。</p>
+	<p th:if="${@testUtil.isTest(123, 456)}">テスト4です。</p>
+	<p class="hoge" th:if="${@testUtil.isTest(123, 456)}" th:classappend="${@testUtil.isTest(123, 456) ? 'aaa' : 'bbb'}">テスト5です。</p>
+
+	<p th:if="jp.dcworks.tsato.demo.TestUtil.isTest2">テスト1です。</p>
+	<p th:if="${@testUtil.isTest2()}">テスト2です。</p>
+	<p th:if="${@testUtil.isTest2('hoge')}">テスト3です。</p>
+	<p th:if="${@testUtil.isTest2(123, 456)}">テスト4です。</p>
+	<p class="hoge" th:if="${@testUtil.isTest2(123, 456)}" th:classappend="${@testUtil.isTest2(123, 456) ? 'aaa' : 'bbb'}">テスト5です。</p>
 
 	<p><a href="/redirect/form">リダイレクトテスト</a></p>
 	<p><a href="/session/form">リダイレク+セッショントテスト</a></p>

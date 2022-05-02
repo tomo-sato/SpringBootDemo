@@ -2,6 +2,7 @@ package jp.dcworks.tsato.demo.controller;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.util.List;
 
 import javax.persistence.Column;
 
@@ -17,7 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import jp.dcworks.tsato.demo.PageWrapper;
-import jp.dcworks.tsato.demo.entity.User;
+import jp.dcworks.tsato.demo.entity.Posts;
+import jp.dcworks.tsato.demo.entity.Users;
 import jp.dcworks.tsato.demo.service.UserService;
 import lombok.extern.log4j.Log4j2;
 
@@ -39,7 +41,7 @@ public class DatabaseController {
 	public String index(Pageable pageable, Model model) {
 		log.info("index");
 
-		Page<User> userPage = userService.findAll(pageable);
+		Page<Users> userPage = userService.findAll(pageable);
 		model.addAttribute("users", userPage);
 		model.addAttribute("page", userPage);
 		model.addAttribute("words", userPage.getContent());
@@ -82,8 +84,23 @@ public class DatabaseController {
 //		String sortColumn = isColumnExist(User.class, sort) ? sort : "id";
 		String sortColumn = sort;
 
-		Page<User> userPage = userService.findAll(ipage, isize, sortColumn, isOrderAsc);
-		PageWrapper<User> pager = new PageWrapper<User>(userPage, "test2");
+		Page<Users> userPage = userService.findAll(ipage, isize, sortColumn, isOrderAsc);
+		PageWrapper<Users> pager = new PageWrapper<Users>(userPage, "test2");
+
+		for (Users user : userPage.getContent()) {
+
+			List<Posts> posts = user.getPostList();
+			log.info(posts.size());
+		}
+
+		List<Users> test = userService.findAll();
+
+		for (Users user : test) {
+
+			List<Posts> posts = user.getPostList();
+			log.info("hogehoge:" + posts.size());
+		}
+
 
 		model.addAttribute("users", userPage);
 		model.addAttribute("page", userPage);
@@ -98,7 +115,7 @@ public class DatabaseController {
 	}
 
 
-	private static boolean isColumnExist(Class<User> clazz, String columnName) {
+	private static boolean isColumnExist(Class<Users> clazz, String columnName) {
 		boolean isColumnExist = false;
 
 		Field[] fieldList = clazz.getDeclaredFields();

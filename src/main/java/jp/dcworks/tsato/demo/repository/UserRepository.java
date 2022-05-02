@@ -5,7 +5,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
-import jp.dcworks.tsato.demo.entity.User;
+import jp.dcworks.tsato.demo.entity.Users;
 
 /**
  * ユーザー関連リポジトリインターフェース.
@@ -13,7 +13,7 @@ import jp.dcworks.tsato.demo.entity.User;
  * @author tomo-sato
  */
 @Repository
-public interface UserRepository extends PagingAndSortingRepository<User, Long> {
+public interface UserRepository extends PagingAndSortingRepository<Users, Long> {
 
-	public Page<User> findAll(Pageable pageable);
+	public Page<Users> findAll(Pageable pageable);
 }

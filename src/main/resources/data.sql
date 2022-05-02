@@ -101,3 +101,22 @@ INSERT INTO `spring_boot_demo`.`users` (`id`,`name`,`age`) VALUES (97,'光', 37)
 INSERT INTO `spring_boot_demo`.`users` (`id`,`name`,`age`) VALUES (98,'隆太', 37);
 INSERT INTO `spring_boot_demo`.`users` (`id`,`name`,`age`) VALUES (99,'基祐', 29);
 INSERT INTO `spring_boot_demo`.`users` (`id`,`name`,`age`) VALUES (100,'一輝', 80);
+
+
+INSERT INTO `spring_boot_demo`.`posts`(`users_id`,`title`,`body`,`created`)VALUES(1, '今日のカレー01_01', '左ルー・ルー攻め派', now());
+INSERT INTO `spring_boot_demo`.`posts`(`users_id`,`title`,`body`,`created`)VALUES(1, '今日のカレー01_02', '左ルー・ルー攻め派', now());
+INSERT INTO `spring_boot_demo`.`posts`(`users_id`,`title`,`body`,`created`)VALUES(1, '今日のカレー01_03', '別盛り・別口派', now());
+INSERT INTO `spring_boot_demo`.`posts`(`users_id`,`title`,`body`,`created`)VALUES(1, '今日のカレー01_04', 'ぶっかけ・ルー攻め派', now());
+INSERT INTO `spring_boot_demo`.`posts`(`users_id`,`title`,`body`,`created`)VALUES(1, '今日のカレー01_05', 'ぶっかけ・せき止め派', now());
+
+INSERT INTO `spring_boot_demo`.`posts`(`users_id`,`title`,`body`,`created`)VALUES(2, '今日のカレー02_01', 'ぶっかけ・せき止め派', now());
+INSERT INTO `spring_boot_demo`.`posts`(`users_id`,`title`,`body`,`created`)VALUES(2, '今日のカレー02_02', 'ぶっかけ・ルー攻め派', now());
+INSERT INTO `spring_boot_demo`.`posts`(`users_id`,`title`,`body`,`created`)VALUES(2, '今日のカレー02_03', '右ルー・せき止め派', now());
+INSERT INTO `spring_boot_demo`.`posts`(`users_id`,`title`,`body`,`created`)VALUES(2, '今日のカレー02_04', '別盛り・混ぜ混ぜ派', now());
+INSERT INTO `spring_boot_demo`.`posts`(`users_id`,`title`,`body`,`created`)VALUES(2, '今日のカレー02_05', '右ルー・別口派', now());
+
+INSERT INTO `spring_boot_demo`.`posts`(`users_id`,`title`,`body`,`created`)VALUES(3, '今日のカレー03_01', '手前ルー・別口派', now());
+INSERT INTO `spring_boot_demo`.`posts`(`users_id`,`title`,`body`,`created`)VALUES(3, '今日のカレー03_02', '左ルー・別口派', now());
+INSERT INTO `spring_boot_demo`.`posts`(`users_id`,`title`,`body`,`created`)VALUES(3, '今日のカレー03_03', 'ぶっかけ・ルー攻め派', now());
+INSERT INTO `spring_boot_demo`.`posts`(`users_id`,`title`,`body`,`created`)VALUES(3, '今日のカレー03_04', 'ぶっかけ・せき止め派', now());
+INSERT INTO `spring_boot_demo`.`posts`(`users_id`,`title`,`body`,`created`)VALUES(3, '今日のカレー03_05', 'ぶっかけ・せき止め派', now());

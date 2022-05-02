@@ -11,7 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
 
-import jp.dcworks.tsato.demo.entity.User;
+import jp.dcworks.tsato.demo.entity.Users;
 import jp.dcworks.tsato.demo.repository.UserRepository;
 
 /**
@@ -28,8 +28,8 @@ public class UserService {
 		this.repository = repository;
 	}
 
-	public Page<User> findAll(Pageable pageable) {
-		Page<User> userList = repository.findAll(pageable);
+	public Page<Users> findAll(Pageable pageable) {
+		Page<Users> userList = repository.findAll(pageable);
 		return userList;
 	}
 
@@ -42,7 +42,7 @@ public class UserService {
 	 * @param isOrderAsc 昇順、降順（true.asc/false.desc）
 	 * @return ●●テーブルの情報を返す。
 	 */
-	public Page<User> findAll(Integer page, Integer size, String sort, boolean isOrderAsc) {
+	public Page<Users> findAll(Integer page, Integer size, String sort, boolean isOrderAsc) {
 
 		Direction direction = isOrderAsc ? Direction.ASC : Direction.DESC;
 		List<Order> orderList = new ArrayList<Order>();
@@ -55,8 +55,15 @@ public class UserService {
 		orderList.add(new Order(direction, "id"));
 
 		Pageable pageable = PageRequest.of(page, size, Sort.by(orderList));
-		Page<User> userList = repository.findAll(pageable);
+		Page<Users> userList = repository.findAll(pageable);
 		return userList;
+	}
+
+	public List<Users> findAll() {
+		Iterable<Users> it = repository.findAll();
+		List<Users> usersList = new ArrayList<Users>();
+		it.forEach(usersList::add);
+		return usersList;
 	}
 
 }
